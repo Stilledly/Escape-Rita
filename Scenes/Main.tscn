@@ -1,0 +1,119 @@
+[gd_scene load_steps=10 format=3 uid="uid://cupwi5y4nrke1"]
+
+[ext_resource type="PackedScene" uid="uid://b8xqvqx8qwf8x" path="res://Escape-Rita/Scenes/Player.tscn" id="1_6y8x9"]
+[ext_resource type="PackedScene" uid="uid://c7xqvqx8qwf8y" path="res://Escape-Rita/Scenes/Monster.tscn" id="2_7y9x0"]
+[ext_resource type="PackedScene" uid="uid://dxoysdwynucbm" path="res://Escape-Rita/Scenes/Flower.tscn" id="3_8y0x1"]
+[ext_resource type="PackedScene" uid="uid://bfjvbo1y6pkhi" path="res://Escape-Rita/Scenes/Emerald.tscn" id="4_9y1x2"]
+[ext_resource type="PackedScene" uid="uid://b5jvbo1y6pkhj" path="res://Escape-Rita/Scenes/FoxStatue.tscn" id="5_0y2x3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1"]
+albedo_color = Color(0.2, 0.3, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2cobi"]
+size = Vector3(50.0263, 1, 50.074)
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 1
+background_color = Color(0.05, 0.05, 0.1, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.2, 0.2, 0.4, 1)
+ambient_light_energy = 0.3
+fog_enabled = true
+fog_light_color = Color(0.3, 0.3, 0.5, 1)
+fog_light_energy = 0.5
+fog_sun_scatter = 0.1
+fog_density = 0.02
+
+[node name="Main" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Ground" type="StaticBody3D" parent="Environment"]
+
+[node name="GroundMesh" type="MeshInstance3D" parent="Environment/Ground"]
+mesh = SubResource("BoxMesh_1")
+surface_material_override/0 = SubResource("StandardMaterial3D_1")
+
+[node name="GroundCollision" type="CollisionShape3D" parent="Environment/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00816345, 0, -0.0111084)
+shape = SubResource("BoxShape3D_2cobi")
+
+[node name="Walls" type="Node3D" parent="Environment"]
+
+[node name="NorthWall" type="StaticBody3D" parent="Environment/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -25)
+
+[node name="WallMesh" type="MeshInstance3D" parent="Environment/Walls/NorthWall"]
+
+[node name="WallCollision" type="CollisionShape3D" parent="Environment/Walls/NorthWall"]
+
+[node name="SouthWall" type="StaticBody3D" parent="Environment/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 25)
+
+[node name="WallMesh" type="MeshInstance3D" parent="Environment/Walls/SouthWall"]
+
+[node name="WallCollision" type="CollisionShape3D" parent="Environment/Walls/SouthWall"]
+
+[node name="EastWall" type="StaticBody3D" parent="Environment/Walls"]
+transform = Transform3D(6.55671e-08, 0, 1.5, 0, 1, 0, -1, 0, 9.83506e-08, 25, 2.5, 0)
+
+[node name="WallMesh" type="MeshInstance3D" parent="Environment/Walls/EastWall"]
+
+[node name="WallCollision" type="CollisionShape3D" parent="Environment/Walls/EastWall"]
+
+[node name="WestWall" type="StaticBody3D" parent="Environment/Walls"]
+transform = Transform3D(6.55671e-08, 0, 1.5, 0, 1, 0, -1, 0, 9.83506e-08, -25, 2.5, 0)
+
+[node name="WallMesh" type="MeshInstance3D" parent="Environment/Walls/WestWall"]
+
+[node name="WallCollision" type="CollisionShape3D" parent="Environment/Walls/WestWall"]
+
+[node name="Lighting" type="Node3D" parent="Environment"]
+
+[node name="MainLight" type="DirectionalLight3D" parent="Environment/Lighting"]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 10, 0)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="Player" parent="." groups=["player"] instance=ExtResource("1_6y8x9")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Monster" parent="." instance=ExtResource("2_7y9x0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2.19878, 15)
+
+[node name="Collectibles" type="Node3D" parent="."]
+
+[node name="Flower1" parent="Collectibles" instance=ExtResource("3_8y0x1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, -10)
+
+[node name="Flower2" parent="Collectibles" instance=ExtResource("3_8y0x1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, -10)
+
+[node name="Flower3" parent="Collectibles" instance=ExtResource("3_8y0x1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, 5)
+
+[node name="Flower4" parent="Collectibles" instance=ExtResource("3_8y0x1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 5)
+
+[node name="Flower5" parent="Collectibles" instance=ExtResource("3_8y0x1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 15)
+
+[node name="Flower6" parent="Collectibles" instance=ExtResource("3_8y0x1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 0)
+
+[node name="Flower7" parent="Collectibles" instance=ExtResource("3_8y0x1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, -5)
+
+[node name="Emerald" parent="Collectibles" instance=ExtResource("4_9y1x2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -20)
+
+[node name="FoxStatue" parent="Collectibles" instance=ExtResource("5_0y2x3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.5, -20)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]

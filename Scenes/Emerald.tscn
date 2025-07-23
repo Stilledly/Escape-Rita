@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfjvbo1y6pkhi"]
+[gd_scene load_steps=5 format=3 uid="uid://bfjvbo1y6pkhi"]
 
 [ext_resource type="Script" uid="uid://b3swm43b4myy3" path="res://Escape-Rita/Scripts/Emerald.gd" id="1_4y6x7"]
 
@@ -12,7 +12,11 @@ roughness = 0.1
 emission_enabled = true
 emission = Color(0, 1, 0.4, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_fo7qp"]
+size = Vector3(0.378815, 0.600952, 0.374451)
+
 [node name="Emerald" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42624, 0)
 script = ExtResource("1_4y6x7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -21,15 +25,18 @@ mesh = SubResource("BoxMesh_1")
 surface_material_override/0 = SubResource("StandardMaterial3D_1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.507032, 0.495896, 0.704986, -0.695408, 0.718596, -0.0053256, -0.509241, -0.487552, 0.709201, -0.0107841, -0.00707592, -0.0128575)
+shape = SubResource("BoxShape3D_fo7qp")
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="AreaCollision" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.507032, 0.495896, 0.704986, -0.695408, 0.718596, -0.0053256, -0.509241, -0.487552, 0.709201, -0.0107841, -0.00707592, -0.0128575)
+shape = SubResource("BoxShape3D_fo7qp")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 3, 0)
-light_color = Color(0, 1, 0.4, 1)
-light_energy = 2.0
+light_energy = 2.324
 spot_range = 8.0
 spot_attenuation = 1.5
 spot_angle = 60.0

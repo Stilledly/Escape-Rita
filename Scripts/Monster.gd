@@ -11,7 +11,7 @@ enum State {
 @export var patrol_speed: float = 2.0
 @export var chase_speed: float = 5.0
 @export var search_speed: float = 3.0
-@export var detection_range: float = 50.0
+@export var detection_range: float = 20.0
 @export var vision_angle: float = 180.0
 @export var hearing_range: float = 8.0
 
@@ -94,8 +94,6 @@ func handle_chasing(delta):
         
         # Face the player
         look_at(player.global_position, Vector3.UP)
-        
-        print("Direct chase - Direction: ", direction_to_player, " Velocity: ", velocity)
         
         # Also update nav agent target for future use
         nav_agent.target_position = player.global_position

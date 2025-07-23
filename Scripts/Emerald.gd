@@ -19,8 +19,8 @@ func _process(delta):
         global_position.y = initial_position.y + sin(Time.get_ticks_msec() * 0.001 * float_speed) * float_amplitude
         
         # Rotate
-        rotate_y(delta * 1.0)
-        rotate_x(delta * 0.5)
+        rotate_y(delta * 2.0)
+        rotate_x(delta * 3.5)
 
 func _on_area_entered(body):
     if body.is_in_group("player") and not is_collected:

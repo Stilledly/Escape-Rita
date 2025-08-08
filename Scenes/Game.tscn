@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://bintvganemca3"]
-
-[node name="Node3D" type="Node3D"]
-
-[node name="Node3D" type="Node3D" parent="."]
